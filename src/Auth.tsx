@@ -1,5 +1,6 @@
 import React, { useState, ChangeEvent, FormEvent, useEffect } from 'react';
-// import './css/styles.css';
+
+//css library component from https://tailwindui.com/components/application-ui/forms/sign-in-forms
 
 interface LoginData {
     email: string;
@@ -61,6 +62,10 @@ const AuthForm: React.FC = () => {
         localStorage.removeItem('access_token');
         localStorage.removeItem('refresh_token');
         setIsLoggedIn(false);
+        setLoginData(
+            {
+            email: '',
+            password: '',})
     };
 
     //useEffect to check if the user is already logged in or not. If already logged in, it the page will display "welcome to 10zyme" otherwise, it will show the form required to log in. Remember, I'm using dummy tokens here.
@@ -74,29 +79,35 @@ const AuthForm: React.FC = () => {
 
 
     return (
-        <div className="authFormContainer">
-            <div className="mainContainer">
-               <h1 className="mainTitle"> Welcome to 10zyme!</h1> 
+        <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
+            <div className="sm:mx-auto sm:w-full sm:max-w-sm">
+               <h1 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900"> Welcome to 10zyme!</h1> 
             </div>
             {
                 isLoggedIn ? (
-                    <>
-                        <h2>You are logged in!</h2>
-                        <button onClick={logout}>Log Out</button>
-                    </>
+                    < div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+                        <h2 className="text-sm font-semibold leading-6 text-gray-900">You are logged in!</h2>
+                        <button onClick={logout} className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Log Out</button>
+                    </div>
 
                 ) : (
-                    <form onSubmit={handleLoginSubmit}>
-                        <label>
-                            Email:
-                            <input type="email" name="email" onChange={handleLoginChange}/>
-                        </label>
-                        <label>
-                            Password:
-                            <input type="password" name="password" onChange={handleLoginChange}/>
-                        </label>
-                        <button type="submit"> Log In</button>
-                    </form>
+                    <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+                        <form onSubmit={handleLoginSubmit} className="space-y-6">
+                            <label className="block text-sm font-medium leading-6 text-gray-900">
+                                Email:
+                                <div className="mt-2">
+                                    <input type="email" name="email" onChange={handleLoginChange} className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"/>
+                                </div>
+                            </label>
+                            <label className="block text-sm font-medium leading-6 text-gray-900">
+                                Password:
+                                <div className="mt-2">
+                                    <input type="password" name="password" onChange={handleLoginChange} className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"/>
+                                </div>
+                            </label>
+                            <button type="submit" className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"> Log In</button>
+                        </form>
+                    </div>
 
                 )}
 
