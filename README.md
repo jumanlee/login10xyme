@@ -1,6 +1,10 @@
-# Getting Started with Create React App
+## Simple Login Form
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Please note that you can use the following login details to login with the form. Email: test@example.com Password: password
+
+The login form has been developed using React, Tailwind CSS, and TypeScript, as per the requirements.
+
+Note that in line with my previous experience with React alongside Django backend framework, the login form is set up to use JWT (JSON Web Tokens) for authentication. Since this project is focused on only the frontend, I have implemented a dummy API in the code to simulate the token-based authentication process.
 
 ## Available Scripts
 
